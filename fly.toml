@@ -1,17 +1,33 @@
-app = "ИМЯ-ТВОЕГО-ПРИЛОЖЕНИЯ"   # придумай уникальное имя — fly launch подставит его сам
-primary_region = "fra"          # Франкфурт — ближайший к России/Украине регион Fly.io
+# fly.toml app configuration file generated for tg-shop-bot-z3dhxw on 2026-10-29T09:50:33Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'tg-shop-bot-z3dhxw'
+primary_region = 'ams'
 
 [build]
 
-[mounts]
-  source = "data"
-  destination = "/data"
-
 [env]
-  DATA_DIR = "/data"
+  DATA_DIR = '/data'
 
 [processes]
-  app = "python main.py"
+  app = 'python main.py'
 
-# У бота нет веб-сервера (это телеграм-бот на long polling), поэтому HTTP-сервисы не нужны —
-# секция [[services]] / [[http_service]] намеренно отсутствует.
+[[mounts]]
+  source = 'data'
+  destination = '/data'
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
+  memory_mb = 256
