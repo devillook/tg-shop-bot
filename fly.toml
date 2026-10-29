@@ -1,0 +1,17 @@
+app = "ИМЯ-ТВОЕГО-ПРИЛОЖЕНИЯ"   # придумай уникальное имя — fly launch подставит его сам
+primary_region = "fra"          # Франкфурт — ближайший к России/Украине регион Fly.io
+
+[build]
+
+[mounts]
+  source = "data"
+  destination = "/data"
+
+[env]
+  DATA_DIR = "/data"
+
+[processes]
+  app = "python main.py"
+
+# У бота нет веб-сервера (это телеграм-бот на long polling), поэтому HTTP-сервисы не нужны —
+# секция [[services]] / [[http_service]] намеренно отсутствует.

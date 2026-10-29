@@ -1,0 +1,4 @@
+.env
+shop.db
+sessions/
+__pycache__/

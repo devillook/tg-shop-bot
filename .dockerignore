@@ -1,0 +1,8 @@
+.env
+.env.example
+shop.db
+sessions/
+__pycache__/
+*.bat
+ЗАПУСК.txt
+.git
